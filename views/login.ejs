@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>수강신청 사이트</h1>
+    <form action="/userlogin" method="post">
+        <label for="id">ID:</label><br>
+        <input type="text" id="id" name="id"><br>
+        <label for="password">Password:</label><br>
+        <input type="text" id="password" name="password"><br>
+        <input type="submit" value="로그인"><br><br>
+    </form>
+    <form action="/makeid" method="get">
+        <input type="submit" value="회원가입">
+    </form>
+    <%=message%>      
+</body>
+</html>

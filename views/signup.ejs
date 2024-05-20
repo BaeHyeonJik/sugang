@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+</head>
+<body>
+    <h1>회원정보</h1>
+    <form action="/makeid" method="post">
+        <label for="id">ID:</label><br>
+        <input type="text" id="id" name="id"><br><br>
+        <label for="password">Password:</label><br>
+        <input type="text" id="password" name="password"><br><br>
+        <label for="name">이름:</label><br>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="num">학번:</label><br>
+        <input type="text" id="num" name="num"><br><br>
+        <label for="student">학생</label>
+        <input type="radio" id="student" name="userclass" value="student">
+        <label for="professor">교수</label>
+        <input type="radio" id="professor" name="userclass" value="professor"><br>
+        <input type="submit" value="sign up">
+    </form>
+    <%= message %>
+</body>
+</html>
