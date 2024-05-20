@@ -37,8 +37,8 @@ router.post('/', (req, res) => {
                     console.error('MySQL 쿼리 실행 오류: ' + err.stack);
                     return res.status(500).send('Server Error');
                 }
-        
-                return res.render('login');
+                message = ''
+                return res.render('login', { message });
             });
         }
     });

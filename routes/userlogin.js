@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post('/', (req, res) => {
     message = ''
-    const { id, password } = req.body;
+    const { id, password} = req.body;
     const query = 'select * from users where id = ? and password = ?';
     params = [id, password]
     db.query(query, params, (err, results, fields) => {
@@ -17,12 +17,12 @@ router.post('/', (req, res) => {
         }
         if (results.length > 0) {
             req.session.user = {
-                id: results[0]['id'],
-                name: results[0]['name'],
-                num: results[0]['num'],
-                userclass: results[0]['userclass']
+                id: results[0].id,
+                name: results[0].name,
+                num: results[0].num,
+                userclass: results[0].userclass
             };
-            res.render('home', {user: results[0]});
+            res.render('home', {name: results[0].name, num: results[0].num, userclass: results[0].class});
             
           } else {
             message = '입력하신 정보와 일치하는 ID가 없습니다.'

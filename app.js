@@ -16,17 +16,18 @@ app.use(session({
     secret: '1234',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true }
+    cookie: { secure: false }
   }))
 
 const makeidRoutes = require('./routes/makeid')
 const userloginRoutes = require('./routes/userlogin')
 const userlogoutRoutes = require('./routes/userlogout')
-
+const makelectureRoutes = require('./routes/professor/makelecture')
 
 app.use("/makeid", makeidRoutes)
 app.use("/userlogin", userloginRoutes)
 app.use("/userlogout", userlogoutRoutes)
+app.use("/makelecture", makelectureRoutes)
 
 
 
