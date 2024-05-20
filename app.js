@@ -21,10 +21,12 @@ app.use(session({
 
 const makeidRoutes = require('./routes/makeid')
 const userloginRoutes = require('./routes/userlogin')
+const userlogoutRoutes = require('./routes/userlogout')
+
 
 app.use("/makeid", makeidRoutes)
 app.use("/userlogin", userloginRoutes)
-
+app.use("/userlogout", userlogoutRoutes)
 
 
 

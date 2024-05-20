@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const db = require('../db/db'); // MySQL 연결 모듈
+const db = require('../db/db');
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -11,7 +11,7 @@ router.post('/', (req, res) => {
     let message = '';
     const { id, password, name, num, userclass } = req.body;
     
-    if (id === '' || password === '' || name === '' || num === '' || userclass === '') {
+    if (id == '' || password == '' || name == '' || num == '' || userclass == '') {
         message = '모든 빈칸이 입력되야 합니다.';
         return res.render('signup', { message });
     }
