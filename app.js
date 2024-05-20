@@ -22,12 +22,18 @@ app.use(session({
 const makeidRoutes = require('./routes/makeid')
 const userloginRoutes = require('./routes/userlogin')
 const userlogoutRoutes = require('./routes/userlogout')
+const mylectureRoutes = require('./routes/mylecture')
 const makelectureRoutes = require('./routes/professor/makelecture')
+
+
+
 
 app.use("/makeid", makeidRoutes)
 app.use("/userlogin", userloginRoutes)
 app.use("/userlogout", userlogoutRoutes)
 app.use("/makelecture", makelectureRoutes)
+app.use("/mylecture", mylectureRoutes)
+
 
 
 

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>교수의 강좌</title>
+</head>
+<body>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>강의명</th>
+                <th>현재인원</th>
+                <th>총인원</th>
+                <th>학점</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let lecture of lectures) { %>
+                <tr>
+                    <td><%= lecture.title %></td>
+                    <td><%= lecture.st_count %></td>
+                    <td><%= lecture.total %></td>
+                    <td><%= lecture.credit %></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</body>
+</html>
