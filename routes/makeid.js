@@ -4,7 +4,7 @@ const db = require('../db/db'); // MySQL 연결 모듈
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.render('signup');
+    res.render('signup', {message: ''});
 });
 
 router.post('/', (req, res) => {

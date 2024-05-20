@@ -6,6 +6,25 @@
     <title>Home</title>
 </head>
 <body>
-    home
+    <p><%=user['name']%> <%=user['num']%></p>
+    <form action="/logout" method="post">
+        <input type="submit" value="로그아웃"><br><br>
+    </form>
+    <h1>목록</h1>
+    <% if (user['userclass'] == 'student') { %>
+        <form action="/registerrecture" method="post">
+            <input type="submit" value="수강신청"><br><br>
+        </form>
+        <form action="/mylecture" method="post">
+            <input type="submit" value="내 강의 보기"><br><br>
+        </form>
+    <% } else { %>
+        <form action="/makelecture" method="post">
+            <input type="submit" value="강의 개설하기"><br><br>
+        </form>
+        <form action="/mylecture" method="post">
+            <input type="submit" value="내 강의 보기"><br><br>
+        </form>
+    <% } %>
 </body>
-</html>
+</html> 
