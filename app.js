@@ -29,7 +29,7 @@ app.use("/userlogin", userloginRoutes)
 
 
 app.get('/', (req, res) => {
-  res.render('login');
+  res.render('login', {message: ''});
 });
 
 app.listen(PORT, () => {
