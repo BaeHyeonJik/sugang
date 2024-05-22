@@ -19,20 +19,26 @@ app.use(session({
     cookie: { secure: false }
   }))
 
+const gotosignupRoutes = require('./routes/gotosignup')
 const makeidRoutes = require('./routes/makeid')
 const userloginRoutes = require('./routes/userlogin')
 const userlogoutRoutes = require('./routes/userlogout')
 const mylectureRoutes = require('./routes/mylecture')
+const gotomakelectureRoutes = require('./routes/professor/gotomakelecture')
 const makelectureRoutes = require('./routes/professor/makelecture')
+const gotomakeboardRoutes = require('./routes/professor/gotomakeboard')
+const makeboardRoutes = require('./routes/professor/makeboard')
 
 
-
-
+app.use("/gotosignup", gotosignupRoutes)
 app.use("/makeid", makeidRoutes)
 app.use("/userlogin", userloginRoutes)
 app.use("/userlogout", userlogoutRoutes)
-app.use("/makelecture", makelectureRoutes)
 app.use("/mylecture", mylectureRoutes)
+app.use("/gotomakelecture", gotomakelectureRoutes)
+app.use("/makelecture", makelectureRoutes)
+app.use("/gotomakeboard", gotomakeboardRoutes)
+app.use("/makeboard", makeboardRoutes)
 
 
 

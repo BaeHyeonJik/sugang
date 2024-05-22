@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>강의등록</title>
+    <title>게시물작성</title>
 </head>
 <body>
-    <h1>강의등록</h1>
+    <p><%=name%> <%=num%></p>
+    <h1>게시물작성</h1>
     <form action="/makelecture" method="post">
         <label for="title">강의명:</label><br>
         <input type="text" id="title" name="title"><br><br>
@@ -16,6 +17,5 @@
         <input type="text" id="credit" name="credit"><br><br>
         <input type="submit" value="강의등록하기">
     </form>
-    <%=message%>
 </body>
 </html>

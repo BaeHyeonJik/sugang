@@ -3,10 +3,6 @@ const path = require('path');
 const db = require('../db/db');
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.render('signup', {message: ''});
-});
-
 router.post('/', (req, res) => {
     let message = '';
     const { id, password, name, num, userclass } = req.body;
