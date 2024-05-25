@@ -9,7 +9,7 @@ router.post('/', (req, res) => {
     const {title, total, credit} = req.body;
     if (title== '' || total == '' || credit == '') {
         message = '모든 빈칸이 입력되야 합니다.';
-        return res.render('professor/addlecture', { message, name: req.session.user.name, num: req.session.user.num });
+        return res.render('professor/addlecturepage', { message, name: req.session.user.name, num: req.session.user.num });
     }
     const query1 = 'SELECT * FROM lectures WHERE p_id = ? and title = ?';
     const params1 = [req.session.user.id, title];
@@ -22,7 +22,7 @@ router.post('/', (req, res) => {
         
         if (results.length > 0) {
             message = '이미 등록된 강의입니다.';
-            return res.render('professor/addlecture', { message, name: req.session.user.name, num: req.session.user.num });
+            return res.render('professor/addlecturepage', { message, name: req.session.user.name, num: req.session.user.num });
         } else {
             const query2 = 'INSERT INTO lectures (p_id, title, total, credit) VALUES (?, ?, ?, ?)';
             const params2 = [req.session.user.id, title, total, credit];
@@ -32,7 +32,7 @@ router.post('/', (req, res) => {
                     console.error('MySQL 쿼리 실행 오류: ' + err.stack);
                     return res.status(500).send('Server Error');
                 }
-                return res.render('home', {name: req.session.user.name, num: req.session.user.num, userclass: req.session.user.userclass});
+                return res.render('homepage', {name: req.session.user.name, num: req.session.user.num, userclass: req.session.user.userclass});
             });
         }
     });

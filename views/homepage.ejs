@@ -19,7 +19,8 @@
             <input type="submit" value="내 강의 보기"><br><br>
         </form>
     <% } else { %>
-        <form action="/gotomakelecture" method="post">
+        <form action="/goto" method="post">
+            <input type="hidden" name="where" value='addlecture'>
             <input type="submit" value="강의 개설하기"><br><br>
         </form>
         <form action="/mylecture" method="post">

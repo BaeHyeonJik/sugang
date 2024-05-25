@@ -9,7 +9,7 @@ router.post('/', (req, res) => {
     
     if (id == '' || password == '' || name == '' || num == '' || userclass == '') {
         message = '모든 빈칸이 입력되야 합니다.';
-        return res.render('signup', { message });
+        return res.render('signuppage', { message });
     }
 
     const query1 = 'SELECT * FROM users WHERE id = ?';
@@ -34,7 +34,7 @@ router.post('/', (req, res) => {
                     return res.status(500).send('Server Error');
                 }
                 message = ''
-                return res.render('login', { message });
+                return res.render('loginpage', { message });
             });
         }
     });

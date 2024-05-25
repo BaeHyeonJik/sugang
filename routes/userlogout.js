@@ -7,7 +7,7 @@ router.post('/', (req, res) => {
     req.session.destroy(function(){
         req.session;
     });
-    res.render('login');    
+    res.render('loginpage');    
 });
 
 module.exports = router;

@@ -15,7 +15,7 @@ router.post('/', (req, res) => {
                 return;
             }
             console.log(results)
-            res.render('professor/proflecture', {lectures: results, name: req.session.user.name, num: req.session.user.num, userclass: req.session.user.userclass});
+            res.render('professor/proflecturepage', {lectures: results, name: req.session.user.name, num: req.session.user.num, userclass: req.session.user.userclass});
         });
     }else{
         res.send('hi')

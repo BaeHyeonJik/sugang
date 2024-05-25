@@ -19,32 +19,27 @@ app.use(session({
     cookie: { secure: false }
   }))
 
-const gotosignupRoutes = require('./routes/gotosignup')
+const backRoutes = require('./routes/back')
+const gotoRoutes = require('./routes/goto')
 const makeidRoutes = require('./routes/makeid')
 const userloginRoutes = require('./routes/userlogin')
 const userlogoutRoutes = require('./routes/userlogout')
 const mylectureRoutes = require('./routes/mylecture')
-const gotomakelectureRoutes = require('./routes/professor/gotomakelecture')
-const makelectureRoutes = require('./routes/professor/makelecture')
-const gotomakeboardRoutes = require('./routes/professor/gotomakeboard')
-const makeboardRoutes = require('./routes/professor/makeboard')
+const addlectureRoutes = require('./routes/professor/addlecture')
+const addboardRoutes = require('./routes/professor/addboard')
 
-
-app.use("/gotosignup", gotosignupRoutes)
+app.use("/back", backRoutes)
+app.use("/goto", gotoRoutes)
 app.use("/makeid", makeidRoutes)
 app.use("/userlogin", userloginRoutes)
 app.use("/userlogout", userlogoutRoutes)
 app.use("/mylecture", mylectureRoutes)
-app.use("/gotomakelecture", gotomakelectureRoutes)
-app.use("/makelecture", makelectureRoutes)
-app.use("/gotomakeboard", gotomakeboardRoutes)
-app.use("/makeboard", makeboardRoutes)
-
-
+app.use("/addlecture", addlectureRoutes)
+app.use("/addboard", addboardRoutes)
 
 
 app.get('/', (req, res) => {
-  res.render('login', {message: ''});
+  res.render('loginpage', {message: ''});
 });
 
 app.listen(PORT, () => {

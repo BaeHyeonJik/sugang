@@ -25,7 +25,8 @@
                     <td><%= lecture.total %></td>
                     <td><%= lecture.credit %></td>
                     <td>
-                        <form action="/gotomakeboard" method="post">
+                        <form action="/goto" method="post">
+                            <input type="hidden" name="where" value='addboard'>
                             <input type="hidden" name="title" value=<%= lecture.title %>>
                             <input type="submit" value="게시물작성">
                         </form>
