@@ -5,13 +5,10 @@ const router = express.Router();
 
 router.post('/', (req, res) => {
     const {where} = req.body
-    if(where == 'signup'){
-        res.render('signuppage', {message: ''});
-    }else if(where == 'addlecture'){
-        res.render('professor/addlecturepage', {message: '', name: req.session.user.name, num: req.session.user.num});
-    }else if(where == 'addboard'){
-        res.render('professor/addboardpage', {name: req.session.user.name, num: req.session.user.num});
-    }
-   
+    if(where == 'loginpage'){
+        res.render('loginpage', {message: ''});
+    }else if(where == 'homepage'){
+        res.render('homepage', {name: req.session.user.name, num: req.session.user.num, userclass: req.session.user.userclass});
+    };
 });
 module.exports = router;

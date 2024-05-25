@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>게시물작성</title>
+    <title>게시글작성</title>
 </head>
 <body>
+    <form action="/mylecture" method="post">
+        <input type="hidden" name="where" value='proflecturepage'>
+        <input type="submit" value="뒤로가기">
+    </form>
     <p><%=name%> <%=num%></p>
-    <h1>게시물작성</h1>
-    <form action="/addlecture" method="post">
-        <label for="title">강의명:</label><br>
-        <input type="text" id="title" name="title"><br><br>
-        <label for="total">제한인원:</label><br>
-        <input type="text" id="total" name="total"><br><br>
-        <label for="credit">학점:</label><br>
-        <input type="text" id="credit" name="credit"><br><br>
-        <input type="submit" value="강의등록하기">
+    <h1>게시글작성</h1>
+    <p>강의명: <%=title%></p>
+    <form action="/addboard" method="post">
+        <label for="boardtitle">게시글제목:</label><br>
+        <input type="text" id="boardtitle" name="boardtitle"><br><br>
+        <label for="content">게시글:</label><br>
+        <textarea id="content" rows="4" cols="50" name="content"></textarea><br>
+        <input type="submit" value="게시글등록하기">
     </form>
 </body>
 </html>

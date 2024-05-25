@@ -22,7 +22,7 @@ router.post('/', (req, res) => {
                 num: results[0].num,
                 userclass: results[0].userclass
             };
-            res.render('homepage', {name: results[0].name, num: results[0].num, userclass: results[0].class});
+            res.render('homepage', {name: req.session.user.name, num: req.session.user.num, userclass: req.session.user.userclass});
             
           } else {
             message = '입력하신 정보와 일치하는 ID가 없습니다.'

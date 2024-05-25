@@ -6,6 +6,10 @@
     <title>Signup</title>
 </head>
 <body>
+    <form action="/back" method="post">
+        <input type="hidden" name="where" value='loginpage'>
+        <input type="submit" value="뒤로가기">
+    </form>
     <h1>회원정보</h1>
     <form action="/makeid" method="post">
         <label for="id">ID:</label><br>

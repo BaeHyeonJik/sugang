@@ -14,7 +14,6 @@ router.post('/', (req, res) => {
                 res.status(500).send('Server Error');
                 return;
             }
-            console.log(results)
             res.render('professor/proflecturepage', {lectures: results, name: req.session.user.name, num: req.session.user.num, userclass: req.session.user.userclass});
         });
     }else{

@@ -6,6 +6,10 @@
     <title>교수의 강좌</title>
 </head>
 <body>
+    <form action="/back" method="post">
+        <input type="hidden" name="where" value='homepage'>
+        <input type="submit" value="뒤로가기">
+    </form>
     <p><%=name%> <%=num%></p>
     <table border="1">
         <thead>
@@ -26,7 +30,7 @@
                     <td><%= lecture.credit %></td>
                     <td>
                         <form action="/goto" method="post">
-                            <input type="hidden" name="where" value='addboard'>
+                            <input type="hidden" name="where" value='addboardpage'>
                             <input type="hidden" name="title" value=<%= lecture.title %>>
                             <input type="submit" value="게시물작성">
                         </form>

@@ -6,6 +6,10 @@
     <title>강의등록</title>
 </head>
 <body>
+    <form action="/back" method="post">
+        <input type="hidden" name="where" value='homepage'>
+        <input type="submit" value="뒤로가기">
+    </form>
     <p><%=name%> <%=num%></p>
     <h1>강의등록</h1>
     <form action="/addlecture" method="post">
