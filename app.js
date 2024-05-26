@@ -29,6 +29,7 @@ const addlectureRoutes = require('./routes/professor/addlecture')
 const myboardRoutes = require('./routes/myboard')
 const addboardRoutes = require('./routes/professor/addboard')
 const showalllectureRoutes = require('./routes/student/showalllecture')
+const sugangRoutes = require('./routes/student/sugang')
 
 app.use("/back", backRoutes)
 app.use("/goto", gotoRoutes)
@@ -40,6 +41,7 @@ app.use("/addlecture", addlectureRoutes)
 app.use("/myboard", myboardRoutes)
 app.use("/addboard", addboardRoutes)
 app.use("/showalllecture", showalllectureRoutes)
+app.use("/sugang", sugangRoutes)
 
 
 app.get('/', (req, res) => {

@@ -32,6 +32,8 @@
                         <form action="/sugang" method="post">
                             <input type="hidden" name="p_id" value=<%= lecture.id %>>
                             <input type="hidden" name="title" value=<%= lecture.title %>>
+                            <input type="hidden" name="st_count" value=<%= lecture.st_count %>>
+                            <input type="hidden" name="total" value=<%= lecture.total %>>
                             <input type="submit" value="수강신청">
                         </form>
                     </td>
@@ -39,5 +41,6 @@
             <% } %>
         </tbody>
     </table>
+    <%= message %>
 </body>
 </html>

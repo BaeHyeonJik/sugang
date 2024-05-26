@@ -30,6 +30,7 @@
                     <td><%= lecture.credit %></td>
                     <td>
                         <form action="/myboard" method="post">
+                            <input type="hidden" name="p_id" value=<%= lecture.id %>>
                             <input type="hidden" name="title" value=<%= lecture.title %>>
                             <input type="submit" value="게시물보기">
                         </form>
