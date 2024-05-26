@@ -14,11 +14,13 @@
     <h1>게시글작성</h1>
     <p>강의명: <%=title%></p>
     <form action="/addboard" method="post">
+        <input type="hidden" name="title" value=<%=title%>>
         <label for="boardtitle">게시글제목:</label><br>
         <input type="text" id="boardtitle" name="boardtitle"><br><br>
         <label for="content">게시글:</label><br>
         <textarea id="content" rows="4" cols="50" name="content"></textarea><br>
         <input type="submit" value="게시글등록하기">
     </form>
+    <%= message %>
 </body>
 </html>

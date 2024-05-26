@@ -11,7 +11,7 @@ router.post('/', (req, res) => {
         res.render('professor/addlecturepage', {message: '', name: req.session.user.name, num: req.session.user.num});
     }else if(where == 'addboardpage'){
         const {title} = req.body
-        res.render('professor/addboardpage', {name: req.session.user.name, num: req.session.user.num, title: title});
+        res.render('professor/addboardpage', {name: req.session.user.name, num: req.session.user.num, title: title, message: ''});
     }
    
 });

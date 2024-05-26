@@ -32,7 +32,8 @@ router.post('/', (req, res) => {
                     console.error('MySQL 쿼리 실행 오류: ' + err.stack);
                     return res.status(500).send('Server Error');
                 }
-                return res.render('homepage', {name: req.session.user.name, num: req.session.user.num, userclass: req.session.user.userclass});
+                message = '새로운 강의가 등록되었습니다.'
+                res.render('professor/addlecturepage', {message: message, name: req.session.user.name, num: req.session.user.num});
             });
         }
     });
