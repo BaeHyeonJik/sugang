@@ -26,6 +26,7 @@ const userloginRoutes = require('./routes/userlogin')
 const userlogoutRoutes = require('./routes/userlogout')
 const mylectureRoutes = require('./routes/mylecture')
 const addlectureRoutes = require('./routes/professor/addlecture')
+const myboardRoutes = require('./routes/myboard')
 const addboardRoutes = require('./routes/professor/addboard')
 
 app.use("/back", backRoutes)
@@ -35,6 +36,7 @@ app.use("/userlogin", userloginRoutes)
 app.use("/userlogout", userlogoutRoutes)
 app.use("/mylecture", mylectureRoutes)
 app.use("/addlecture", addlectureRoutes)
+app.use("/myboard", myboardRoutes)
 app.use("/addboard", addboardRoutes)
 
 

@@ -18,7 +18,7 @@
                 <th>현재인원</th>
                 <th>총인원</th>
                 <th>학점</th>
-                <th>게시물작성</th>
+                <th>게시물보기</th>
             </tr>
         </thead>
         <tbody>
@@ -29,10 +29,9 @@
                     <td><%= lecture.total %></td>
                     <td><%= lecture.credit %></td>
                     <td>
-                        <form action="/goto" method="post">
-                            <input type="hidden" name="where" value='addboardpage'>
+                        <form action="/myboard" method="post">
                             <input type="hidden" name="title" value=<%= lecture.title %>>
-                            <input type="submit" value="게시물작성">
+                            <input type="submit" value="게시물보기">
                         </form>
                     </td>
                 </tr>

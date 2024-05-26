@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>교수의 강좌</title>
+</head>
+<body>
+    <form action="/back" method="post">
+        <input type="hidden" name="where" value='homepage'>
+        <input type="submit" value="뒤로가기">
+    </form>
+    <p><%=name%> <%=num%></p>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>강의명</th>
+                <th>게시물제목</th>
+                <th>게시물내용</th>
+                <th>등록시간</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let board of boards) { %>
+                <tr>
+                    <td><%= board.title %></td>
+                    <td><%= board.boardtitle%></td>
+                    <td><%= board.content%></td>
+                    <td><%= board.reg_time%></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+    <br><form action="/goto" method="post">
+        <input type="hidden" name="where" value='addboardpage'>
+        <input type="hidden" name="title" value=<%=title %>>
+        <input type="submit" value="게시물작성">
+    </form>
+</body>
+</html>
