@@ -14,30 +14,30 @@
     <table border="1">
         <thead>
             <tr>
+                <th>교수</th>
                 <th>강의명</th>
-                <th>현재인원</th>
-                <th>총인원</th>
                 <th>학점</th>
-                <th>게시물보기</th>
+                <th>현재인원/총원</th>
+                <th>수강신청</th>
             </tr>
         </thead>
         <tbody>
             <% for (let lecture of lectures) { %>
                 <tr>
+                    <td><%= lecture.name %></td>
                     <td><%= lecture.title %></td>
-                    <td><%= lecture.st_count %></td>
-                    <td><%= lecture.total %></td>
                     <td><%= lecture.credit %></td>
+                    <td><%= lecture.st_count %>/<%= lecture.total %></td>
                     <td>
-                        <form action="/myboard" method="post">
+                        <form action="/sugang" method="post">
+                            <input type="hidden" name="p_id" value=<%= lecture.id %>>
                             <input type="hidden" name="title" value=<%= lecture.title %>>
-                            <input type="submit" value="게시물보기">
+                            <input type="submit" value="수강신청">
                         </form>
                     </td>
                 </tr>
             <% } %>
         </tbody>
     </table>
-    <%= message %>
 </body>
 </html>

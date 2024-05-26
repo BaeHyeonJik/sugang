@@ -6,13 +6,13 @@
     <title>Home</title>
 </head>
 <body>
-    <p><%=name%> <%=num%></p>
     <form action="/userlogout" method="post">
         <input type="submit" value="로그아웃"><br><br>
     </form>
+    <p><%=name%> <%=num%></p>
     <h1>목록</h1>
     <% if (userclass == 'student') { %>
-        <form action="/registerrecture" method="get">
+        <form action="/showalllecture" method="post">
             <input type="submit" value="수강신청"><br><br>
         </form>
         <form action="/mylecture" method="get">

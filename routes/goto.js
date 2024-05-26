@@ -12,7 +12,7 @@ router.post('/', (req, res) => {
     }else if(where == 'addboardpage'){
         const {title} = req.body
         res.render('professor/addboardpage', {name: req.session.user.name, num: req.session.user.num, title: title, message: ''});
-    }
+    };
    
 });
 module.exports = router;
