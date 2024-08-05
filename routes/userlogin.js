@@ -1,34 +1,43 @@
 const express = require('express');
 const path = require('path');
-const db = require('../db/db');
+const Pool = require('../db/db');
 const router = express.Router();
 
 
-router.post('/', (req, res) => {
-    message = ''
+router.post('/', async (req, res) => {
+    const connection = Pool.getConnection();
     const { id, password} = req.body;
-    const query = 'select * from users where id = ? and password = ?';
-    params = [id, password]
-    db.query(query, params, (err, results, fields) => {
-        if (err) {
-            console.error('error executing query: ' + err.stack);
-            res.status(500).send('Server Error');
-            return;
+    try{
+        let response = {};
+        const userInfo = await connection.query(
+            `SELECT * FROM users WHERE id = ? AND password = ?`, 
+            [id, password]
+        ).then(([v]) => {
+            return {
+                id: v.id,
+                name: v.name,
+                num: v.num,
+                userclass: v.userclass
+            }
+        })
+        if(userInfo.length > 0){
+            response = {
+                statusCode: 200,
+                userInfo: userInfo,
+                message: 'MATCH'   
+            }
+        } else { 
+            response = {
+                statusCode: 200,
+                message: 'NOT MATCH'
+            }
         }
-        if (results.length > 0) {
-            req.session.user = {
-                id: results[0].id,
-                name: results[0].name,
-                num: results[0].num,
-                userclass: results[0].userclass
-            };
-            res.render('homepage', {name: req.session.user.name, num: req.session.user.num, userclass: req.session.user.userclass});
-            
-          } else {
-            message = '입력하신 정보와 일치하는 ID가 없습니다.'
-            res.render('loginpage', {message: message})
-        }
-    });
+        res.status(200).json(response);
+    } catch (err) {
+        res.status(400).json(err);
+    } finally {
+        connection.release();
+    }
 });
 
 module.exports = router;
