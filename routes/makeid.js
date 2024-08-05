@@ -1,43 +1,34 @@
 const express = require('express');
 const path = require('path');
-const db = require('../db/db');
+const Pool = require('../db/db');
 const router = express.Router();
 
-router.post('/', (req, res) => {
-    let message = '';
+router.post('/', async (req, res) => {
+    const connection = Pool.getConnection();
     const { id, password, name, num, userclass } = req.body;
-    
-    if (id == '' || password == '' || name == '' || num == '' || userclass == '') {
-        message = '모든 빈칸이 입력되야 합니다.';
-        return res.render('signuppage', { message });
-    }
-
-    const query1 = 'SELECT * FROM users WHERE id = ?';
-    const params1 = [id];
-
-    db.query(query1, params1, (err, results) => {
-        if (err) {
-            console.error('MySQL 쿼리 실행 오류: ' + err.stack);
-            return res.status(500).send('Server Error');
+    try{
+        const [userId] = await connection.query(
+            `SELECT * FROM users WHERE id = ?`, 
+            [id]
+        )
+        if(id == '' || password == '' || name == '' || num == '' || userclass == ''){
+            res.status(200).json({ statusCode: 200 });
         }
-        
-        if (results.length > 0) {
-            message = '이미 존재하는 ID입니다.';
-            return res.render('signup', { message });
+        if(userId.length > 0){
+            res.status(200).json({ statusCode: 200 });
         } else {
-            const query2 = 'INSERT INTO users (id, password, name, num, userclass) VALUES (?, ?, ?, ?, ?)';
-            const params2 = [id, password, name, num, userclass];
-
-            db.query(query2, params2, (err, results) => {
-                if (err) {
-                    console.error('MySQL 쿼리 실행 오류: ' + err.stack);
-                    return res.status(500).send('Server Error');
-                }
-                message = ''
-                return res.render('loginpage', { message });
-            });
+            await connection.query(
+                `INSERT INTO users (id, password, name, num, userclass) VALUES (?, ?, ?, ?, ?)`,
+                [id, password, name, num, userclass]
+            )
+            res.status(200).json({ statusCode: 200 });
         }
-    });
+    } catch (err) {
+        res.status(400).json({ statusCode: 400 });
+        return response;
+    } finally {
+        connection.release();
+    }
 });
 
 module.exports = router;
