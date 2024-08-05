@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+</head>
+<body>
+    <h1>회원가입</h1>
+    <form id="signup-form">
+        <label for="id">아이디:</label>
+        <input type="text" id="id" name="id" required><br>
+
+        <label for="password">비밀번호:</label>
+        <input type="password" id="password" name="password" required><br>
+
+        <label for="name">이름:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="num">번호:</label>
+        <input type="text" id="num" name="num" required><br>
+
+        <label for="userclass">클래스:</label>
+        <input type="text" id="userclass" name="userclass" required><br>
+
+        <button type="submit">회원가입</button>
+    </form>
+
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', async function(e) {
+            e.preventDefault();  // 폼의 기본 제출 동작을 막습니다.
+
+            const formData = {
+                id: document.getElementById('id').value,
+                password: document.getElementById('password').value,
+                name: document.getElementById('name').value,
+                num: document.getElementById('num').value,
+                userclass: document.getElementById('userclass').value
+            };
+
+            try {
+                const response = await fetch('/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.statusCode === 200) {
+                    alert('회원가입이 성공적으로 완료되었습니다!');
+                    window.location.href = '/login'; // 회원가입 후 로그인 페이지로 이동
+                } else {
+                    alert('회원가입에 실패했습니다. 다시 시도해주세요.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('서버와 통신 중 오류가 발생했습니다.');
+            }
+        });
+    </script>
+</body>
