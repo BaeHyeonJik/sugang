@@ -1,23 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <script>
+        async function handleLogin(event) {
+            event.preventDefault()
+
+            const formData = new FormData(event.target);
+            const data = {
+                id: formData.get('id'),
+                password: formData.get('password')
+            };
+
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    if (result.existence === 1) {
+                        document.getElementById('error').innerText = 'Invalid username or password.';
+                    } else {
+                        // 로그인 성공: 다른 페이지로 리디렉션
+                        window.location.href = '/dashboard'; // 성공 시 이동할 페이지
+                    }
+                } else {
+                    // 서버 오류
+                    document.getElementById('error').innerText = 'An error occurred.';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('error').innerText = 'An unexpected error occurred.';
+            }
+        }
+    </script>
 </head>
 <body>
     <h1>수강신청 사이트</h1>
-    <form action="/userlogin" method="post">
-        <label for="id">ID:</label><br>
-        <input type="text" id="id" name="id"><br>
-        <label for="password">Password:</label><br>
-        <input type="text" id="password" name="password"><br>
-        <input type="submit" value="로그인"><br><br>
+    <form onsubmit="handleLogin(event)">
+        <label for="id">ID:</label>
+        <input type="text" id="id" name="id" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <button type="submit">Login</button>
     </form>
-    <form action="/goto" method="post">
-        <input type="hidden" name="where" value='signuppage'>
-        <input type="submit" value="회원가입">
-    </form>
-    <%=message%>      
+    <div id="error" style="color: red;"></div>
 </body>
 </html>
