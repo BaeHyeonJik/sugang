@@ -13,6 +13,8 @@ router.post('/', async (req, res) => {
     const connection = Pool.getConnection();
     const {id, password} = req.body;
     try{
+        id = id.trim();
+        password = password.trim();
         let response = {};
         const userInfo = await connection.query(
             `SELECT * FROM users WHERE id = ?`, 
@@ -47,3 +49,7 @@ router.post('/', async (req, res) => {
 });
 
 module.exports = router;
+
+
+
+  
