@@ -16,22 +16,19 @@ router.post('/', async (req, res) => {
         id = id.trim();
         password = password.trim();
         let response = {};
-        const userInfo = await connection.query(
+        const [userInfo] = await connection.query(
             `SELECT * FROM users WHERE id = ?`, 
             [id]
-        ).then(([v]) => {
-            return {
-                id: v.id,
-                password: v.password,
-                name: v.name,
-                num: v.num,
-                userclass: v.userclass
-            }
-        })
+        )
         if(userInfo.length > 0 && comparePassword(password, userInfo.password)){          
             response = {
                 statusCode: 200,
-                userInfo: userInfo,
+                userInfo: {
+                    id: userInfo.id,
+                    name: userInfo.name,
+                    num: userInfo.num,
+                    userclass: userInfo.userclass
+                },
                 message: 'MATCH'   
             }          
         } else { 
