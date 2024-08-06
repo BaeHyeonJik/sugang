@@ -14,6 +14,7 @@ router.post('/', async (req, res) => {
     const connection = Pool.getConnection();
     const { id, password, name, num, userclass } = req.body;
     try{
+        const existence = 0;
         id = id.trim();
         password = password.trim();
         name = name.trim();
@@ -23,21 +24,31 @@ router.post('/', async (req, res) => {
             `SELECT * FROM users WHERE id = ?`, 
             [id]
         )
-        if(id == '' || password == '' || name == '' || num == '' || userclass == ''){
-            res.status(200).json({ statusCode: 200 });
-        }
         if(userId.length > 0){
-            res.status(200).json({ statusCode: 200 });
+            existence = 1;       
         } else {
             await connection.query(
                 `INSERT INTO users (id, password, name, num, userclass) VALUES (?, ?, ?, ?, ?)`,
                 [id, password, name, num, userclass]
             )
-            res.status(200).json({ statusCode: 200 });
         }
+        const response = {
+            statusCode: 200,
+            existence,
+        }
+        res.json({
+            statusCode: response.statusCode,
+            body: JSON.stringify(response)
+        });
     } catch (err) {
-        res.status(400).json({ statusCode: 400 });
-        return response;
+        const response = {
+            statusCode: 400,
+            err
+        }
+        res.json({
+            statusCode: response.statusCode,
+            body: JSON.stringify(response)
+        });
     } finally {
         connection.release();
     }
